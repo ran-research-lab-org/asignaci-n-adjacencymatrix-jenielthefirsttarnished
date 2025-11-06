@@ -16,7 +16,10 @@ int main() {
 
   cout << "Count of in degrees: " << G.inDegree(2) << "\n"; //Returns 4 correctly
 
-  cout << "RESULT: " << G.isInfluencer(2);
+  cout << "RESULT: " << G.isInfluencer(1); //check with a number that is NOT the highest node lmao
+  cout << "\n";
+  cout << "RESULT: " << G.isInfluencer(2);//check with the highest node
+
 
 
 }

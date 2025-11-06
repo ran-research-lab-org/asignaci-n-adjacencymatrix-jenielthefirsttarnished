@@ -79,35 +79,34 @@ public:
     // devuelve true si u es uno de ellos
     bool isInfluencer(int u) const  {
 
-        std::pair<int,int> list_tracker;
-        int max;
+    std::pair<int,int> list_tracker; 
+    int max;
 
-        if (u < 0 || u >= numVertices)
+    if (u < 0 || u >= numVertices)
+    {
+        throw std::out_of_range("Vertice fuera de rango");
+    }
+    else
+    {
+        
+        for(int i = 0; i < numVertices; i++)
         {
-            throw std::out_of_range("Vertice fuera de rango");
-        }
-        else
-        {
-            for(int i = 0; i < numVertices; i++)
+            max = 0; //Just to keep track of the max ones in everyt iteration
+            for(int j = 0; j < numVertices; j++)
             {
-                for(int j = 0; j < numVertices; j++)
-                {
-                    if(adjMatrix[j][i] == 1)
-                    {
-                        max++;
-                    }
+                if(adjMatrix[j][i] == 1)
+                    max++; //update as I find the ones
+            }
 
-                    if(max > list_tracker.second && i != u)
-                    {
-                        return false;
-                    }
-
-                    return true;
-                }
+            if(max > list_tracker.second) //keep track of the highest and put it in the pair
+            {
+                list_tracker.first = i;
+                list_tracker.second = max;
             }
         }
-        
-
+        return list_tracker.first == u; //check if the first number of the pair, which is the index, is equal to the node requested.
     }
+}
+
 };
 
